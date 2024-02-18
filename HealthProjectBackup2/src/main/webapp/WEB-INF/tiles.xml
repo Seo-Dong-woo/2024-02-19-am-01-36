@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+<tiles-definitions>
+  <definition name="main" template="/WEB-INF/main/main.jsp">
+    <put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
+    <put-attribute name="nav" value="/WEB-INF/main/nav.jsp"/>
+    <put-attribute name="content" value="/WEB-INF/main/content.jsp"/>
+    <put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
+  </definition>
+  <!-- <definition name="board/list" extends="main"> 
+   <put-attribute name="content" value="/WEB-INF/board/list.jsp"/>
+  </definition>
+  <definition name="notice/list" extends="main">
+   <put-attribute name="content" value="/WEB-INF/notice/list.jsp"/>
+  </definition> -->
+  <definition name="*/*" extends="main"> <!--  앞은경로 뒤는 파일명 (메인상태를유지하면서 컨텐트만 바꾸겟다)--> 
+    <put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp"></put-attribute>
+  </definition>
+</tiles-definitions>
