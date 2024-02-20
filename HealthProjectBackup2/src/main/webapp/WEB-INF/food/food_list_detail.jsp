@@ -12,7 +12,6 @@
 a.link:hover,img.img_click:hover{
   cursor: pointer;
 }
-
 </style>
 </head>
 <body>

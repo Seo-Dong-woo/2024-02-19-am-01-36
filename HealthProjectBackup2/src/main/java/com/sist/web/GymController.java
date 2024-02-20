@@ -2,6 +2,7 @@ package com.sist.web;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,10 +36,18 @@ public class GymController {
 	}
 	
 	@GetMapping("gym/gym_list_detail.do")
-	public String gym_list_detail(int no,Model model)
+	public String gym_list_detail(int no,Model model, HttpSession session)
 	{
+		String userId=(String)session.getAttribute("userId");
+		String sessionId="";
+		if(userId==null)
+			sessionId="";
+		else
+			sessionId=userId;
 		model.addAttribute("no", no);
-		return "food/food_list_detail"; 
+		model.addAttribute("sessionId", sessionId);
+		
+		return "gym/gym_list_detail"; 
 	}
 	
 //	@GetMapping("recipe/recipe_test.do")

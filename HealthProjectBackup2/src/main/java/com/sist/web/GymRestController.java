@@ -91,6 +91,9 @@ public class GymRestController {
 	@Autowired
 	private GymService service;
 	
+	@Autowired
+	private GymReplyService gymReplyService;
+	
 	@GetMapping(value="find_vue.do",produces = "text/plain;charset=UTF-8")
 	public String gym_find(int page, String fd) throws Exception
 	{
@@ -210,8 +213,15 @@ public class GymRestController {
 	public String gym_detail_vue(int no) throws Exception
 	{
 		GymVO vo=service.gymListDetailData(no);
+		
+		List<GymReplyVO> list=gymReplyService.gymReplyListData(no); // 추가
+		
+		Map map=new HashMap(); // 추가
+		map.put("detail_data", vo); // 추가
+		map.put("reply_list", list); // 추가
+		
 		ObjectMapper mapper=new ObjectMapper();
-		String json=mapper.writeValueAsString(vo);
+		String json=mapper.writeValueAsString(map); // vo에서 map으로 받음
 		return json; // response.data
 	}
 }

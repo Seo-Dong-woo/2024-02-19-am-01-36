@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
   <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="header-top">
+        <!-- <div class="header-top">
             <div class="container">
                 <div class="ht-left">
                     <div class="mail-service">
@@ -39,38 +40,63 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="container">
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="./index.html">
-                                <img src="../img/logo.png" alt="">
+                            <a href="../main/main.do">
+                                <img src="../img/logogam.png" alt="">
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
+                    <div class="col-lg-6 col-md-6">
+                        <!-- <div class="advanced-search">
                             <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
                                 <input type="text" placeholder="What do you need?">
                                 <button type="button"><i class="ti-search"></i></button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="col-lg-3 text-right col-md-3">
+                    <div class="col-lg-4 text-right col-md-4">
+                       <c:if test="${sessionScope.userId!=null }">
+                        <ul class="inline">
+				          <li><i class="fa fa-phone"></i>${sessionScope.userName }(${sessionScope.authority=='ROLE_ADMIN'?'관리자':'일반사용자' })</li>
+				          <li>님 로그인되었습니다</li>
+				        </ul>
+				       </c:if>
                         <ul class="nav-right">
-                            <li class="heart-icon">
-                                <a href="#">
+                            <li class="heart-icon text-center">
+                              <c:if test="${sessionScope.userId==null }">
+                                <a href="../member/login.do">
                                     <i class="icon_heart_alt"></i>
-                                    <span>1</span>
+                                    <span>히</span>
+                                <h6>로그인</h6>
+                                </a>
+                              </c:if>
+                              <c:if test="${sessionScope.userId!=null }">
+                                <a href="../member/logout.do">
+                                    <i class="icon_heart_alt"></i>
+                                    <span>히</span>
+                                <h6>로그아웃</h6>
+                                </a>
+                              </c:if>
+                            </li>   	
+                            <li class="cart-icon text-center">
+                                <a href="../member/join.do">
+                                    <i class="icon_bag_alt"></i>
+                                    <span>히</span>
+                                <h6>회원가입</h6>
                                 </a>
                             </li>
-                            <li class="cart-icon">
+                            
+                            <li class="cart-icon text-center">
                                 <a href="#">
                                     <i class="icon_bag_alt"></i>
-                                    <span>3</span>
+                                    <span>히</span>
+                                <h6>장바구니</h6>
                                 </a>
                                 <div class="cart-hover">
                                     <div class="select-items">
@@ -113,7 +139,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">$150.00</li>
+							<li class="cart-price text-center">
+                            	<i class="fa fa-user"></i>
+                            	<h6>고객센터</h6>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -123,34 +152,49 @@
             <div class="container">
                 <div class="nav-depart">
                     <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>All departments</span>
+                        
+                        <span>스토어</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="../freeboard/list.do">Women’s Clothing</a></li>
-                            <li><a href="../gym/gym_list.do">Men’s Clothing</a></li>
-                            <li><a href="../gym/gym_find.do">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="../food/food_list.do">Luxury Brands</a></li>
-                            <li><a href="../food/food_find.do">Brand Outdoor Apparel</a></li>
+                            <li class="active"><a href="#">운동복</a></li>
+                            <li><a href="#">영양제</a></li>
+
                         </ul>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="../main/main.do">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
+                        <li class="active"><a href="./index.html">운동/건강</a>
+                        	<ul class="dropdown">
+                                <li><a href="#">운동별 소모 칼로리</a></li>
+                                <li><a href="#">음식 칼로리</a></li>
+                                <li><a href="#">칼로리 처방 받기</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
+                        <li><a href="./shop.html">예약</a>
+                        	<ul class="dropdown">
+                                <li><a href="#">회원권</a></li>
+                                <li><a href="#">스포츠센터 예약</a></li>
+                                <li><a href="../gym/gym_list.do">헬스장 목록</a></li>
+                                <li><a href="../gym/gym_find.do">헬스장 찾기</a></li>
+                                <li><a href="../freeboard/list.do">자유게시판</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./blog.html">대회출전권</a></li>
+                        <li><a href="#">소모임</a>
+                            <ul class="dropdown">
+                                <li><a href="#">모임 참가</a></li>
+                                <li><a href="#">모임 톡방</a></li>
+                                <li><a href="#">커뮤니티</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./contact.html">커뮤니티</a>
+                        	<ul class="dropdown">
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">자유게시판</a></li>
+                                <li><a href="#">인바디보건소 찾기</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">실시간채팅</a>
                             <ul class="dropdown">
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>

@@ -1,64 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+	.title{
+		color: white;
+	}
+</style>
 </head>
 <body>
   <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="footer-left">
-                        <div class="footer-logo">
-                            <a href="#"><img src="../img/footer-logo.png" alt=""></a>
-                        </div>
+                        <h3 class="title">인기 공지사항</h3>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
-                        </ul>
-                        <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1">
-                    <div class="footer-widget">
-                        <h5>Information</h5>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="footer-widget">
-                        <h5>My Account</h5>
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
+                            <c:forEach var="vo" items="${nList }">
+					      	  <li><a href="#">${vo.subject }</a></li>
+					      	</c:forEach>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Enter Your Mail">
-                            <button type="button">Subscribe</button>
-                        </form>
+                    <div class="footer-widget">
+                        <h3 class="title">실시간 인기 헬스장</h3>
+                        <ul>
+                            <c:forEach var="vo" items="${gList }">
+					      	  <li><a href="#">${vo.title }</a></li>
+					      	</c:forEach>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-widget">
+                    	<h3 class="title">건강 관련 뉴스</h3>
+                        <ul>
+                            <c:forEach var="vo" items="${newList }" varStatus="s">
+					          <c:if test="${s.index<7 }">
+					            <li><a href="${vo.link }">${vo.title }</a></li>
+					          </c:if>
+					        </c:forEach>
+                        </ul>
                     </div>
                 </div>
             </div>

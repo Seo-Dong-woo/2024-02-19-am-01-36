@@ -43,6 +43,7 @@ a.link:hover,img.img_click:hover{
      		</div>
 		</div>
 	</div>
+	</div>
 	<script>
 	  let gymApp=Vue.createApp({
 		  // 데이터 관리 => 멤버변수 => this.
